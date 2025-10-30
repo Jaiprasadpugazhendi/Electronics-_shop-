@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechHub Electronics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #11998e;
+        }
+
+        .cart-btn {
+            background: #11998e;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(17, 153, 142, 0.4);
+        }
+
+        .cart-count {
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .hero {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-banner h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: #11998e;
+        }
+
+        .search-bar button {
+            padding: 1rem 2rem;
+            background: #11998e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #0d7a6f;
+        }
+
+        .categories {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .products {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideUp 0.5s;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #11998e;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: #11998e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #0d7a6f;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .cart-item-price {
+            color: #11998e;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #11998e;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: right;
+            color: #333;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #11998e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .checkout-btn:hover {
+            background: #0d7a6f;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">⚡ TechHub</div>
+            <nav class="nav">
+                <a class="nav-link" onclick="scrollToSection('categories')">Categories</a>
+                <a class="nav-link" onclick="scrollToSection('products')">Products</a>
+                <a class="nav-link">Deals</a>
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Cart <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-banner">
+            <h1>Welcome to ProTools Electronics & Hardware</h1>
+            <p>Your one-stop shop for electronic tools, pipes, and professional equipment</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products..." id="searchInput">
+                <button onclick="searchProducts()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories" id="categories">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="category-grid">
+            <div class="category-card" onclick="filterByCategory('pipes')">
+                <div class="category-icon">🔧</div>
+                <div class="category-name">Pipes & Fittings</div>
+            </div>
+            <div class="category-card" onclick="filterByCategory('electronic-tools')">
+                <div class="category-icon">⚡</div>
+                <div class="category-name">Electronic Tools</div>
+            </div>
+            <div class="category-card" onclick="filterByCategory('power-tools')">
+                <div class="category-icon">🔨</div>
+                <div class="category-name">Power Tools</div>
+            </div>
+            <div class="category-card" onclick="filterByCategory('hand-tools')">
+                <div class="category-icon">🛠️</div>
+                <div class="category-name">Hand Tools</div>
+            </div>
+            <div class="category-card" onclick="filterByCategory('electrical')">
+                <div class="category-icon">💡</div>
+                <div class="category-name">Electrical</div>
+            </div>
+            <div class="category-card" onclick="filterByCategory('measurement')">
+                <div class="category-icon">📏</div>
+                <div class="category-name">Measurement</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Shopping Cart</h3>
+                <button class="close-btn" onclick="toggleCart()">×</button>
+            </div>
+            <div id="cartItems"></div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { id: 1, name: 'PVC Pipe 1/2 inch', price: 950, category: 'pipes', icon: '🔧', description: '10 ft PVC pipe for plumbing' },
+            { id: 2, name: 'Digital Multimeter', price: 3500, category: 'electronic-tools', icon: '⚡', description: 'LCD display, auto-ranging' },
+            { id: 3, name: 'Soldering Iron Kit', price: 2800, category: 'electronic-tools', icon: '⚡', description: '60W adjustable temperature' },
+            { id: 4, name: 'Cordless Drill', price: 7200, category: 'power-tools', icon: '🔨', description: '20V lithium-ion battery' },
+            { id: 5, name: 'Copper Pipe 3/4 inch', price: 2000, category: 'pipes', icon: '🔧', description: '10 ft copper pipe for water lines' },
+            { id: 6, name: 'Wire Stripper', price: 1450, category: 'electronic-tools', icon: '⚡', description: 'Professional wire cutting tool' },
+            { id: 7, name: 'Socket Wrench Set', price: 4400, category: 'hand-tools', icon: '🛠️', description: '40-piece metric & SAE set' },
+            { id: 8, name: 'Angle Grinder', price: 6300, category: 'power-tools', icon: '🔨', description: '4.5 inch, 7.5 amp motor' },
+            { id: 9, name: 'Pipe Cutter', price: 1750, category: 'pipes', icon: '🔧', description: 'Cuts 1/8 to 1-5/8 inch pipes' },
+            { id: 10, name: 'Circuit Tester', price: 1200, category: 'electrical', icon: '💡', description: 'Non-contact voltage detector' },
+            { id: 11, name: 'LED Work Light', price: 2550, category: 'electrical', icon: '💡', description: 'Rechargeable 1000 lumens' },
+            { id: 12, name: 'Laser Distance Meter', price: 5500, category: 'measurement', icon: '📏', description: 'Measures up to 165 feet' },
+            { id: 13, name: 'Galvanized Pipe Set', price: 3600, category: 'pipes', icon: '🔧', description: 'Assorted fittings & connectors' },
+            { id: 14, name: 'Heat Gun', price: 3400, category: 'electronic-tools', icon: '⚡', description: 'Dual temperature settings' },
+            { id: 15, name: 'Hammer Drill', price: 10000, category: 'power-tools', icon: '🔨', description: 'SDS-plus rotary hammer' },
+            { id: 16, name: 'Screwdriver Set', price: 2250, category: 'hand-tools', icon: '🛠️', description: '20-piece precision set' },
+            { id: 17, name: 'Cable Tester', price: 3050, category: 'electronic-tools', icon: '⚡', description: 'RJ45/RJ11 network tester' },
+            { id: 18, name: 'Spirit Level', price: 1900, category: 'measurement', icon: '📏', description: '24-inch magnetic base' },
+            { id: 19, name: 'Electrical Tape Pack', price: 650, category: 'electrical', icon: '💡', description: '10 rolls assorted colors' },
+            { id: 20, name: 'Pliers Set', price: 2800, category: 'hand-tools', icon: '🛠️', description: '5-piece professional set' }
+        ];
+
+        let cart = [];
+        let displayedProducts = [...products];
+
+        function renderProducts(productsToRender = displayedProducts) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = productsToRender.map(product => `
+                <div class="product-card">
+                    <div class="product-image">${product.icon}</div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        <div class="product-price">₹${product.price}</div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            cart.push(product);
+            updateCartCount();
+            showNotification('Added to cart!');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            renderCart();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+            if (modal.classList.contains('active')) {
+                renderCart();
+            }
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartItems.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹${item.price}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `).join('') + `
+                <div class="cart-total">Total: ₹${total}</div>
+                <button class="checkout-btn" onclick="checkout()">Checkout</button>
+            `;
+        }
+
+        function checkout() {
+            alert('Thank you for your order! Total: ₹' + cart.reduce((sum, item) => sum + item.price, 0));
+            cart = [];
+            updateCartCount();
+            toggleCart();
+        }
+
+        function filterByCategory(category) {
+            displayedProducts = products.filter(p => p.category === category);
+            renderProducts(displayedProducts);
+            scrollToSection('products');
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            displayedProducts = products.filter(p => 
+                p.name.toLowerCase().includes(query) || 
+                p.description.toLowerCase().includes(query)
+            );
+            renderProducts(displayedProducts);
+            scrollToSection('products');
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = 'position: fixed; top: 100px; right: 20px; background: #11998e; color: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1001; animation: slideIn 0.3s;';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
