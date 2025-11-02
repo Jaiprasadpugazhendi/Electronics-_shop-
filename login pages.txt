@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroHub | Electronics E-Commerce</title>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0;
+    background-color: #f5f7fa;
+  }
+
+  header {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header h1 { margin: 0; font-size: 1.8em; }
+  nav a {
+    color: white; text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+  }
+  nav a:hover { text-decoration: underline; }
+
+  .hero {
+    background: url('https://images.unsplash.com/photo-1510552776732-03e61cf4b144?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    height: 400px;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero h2 {
+    font-size: 2.5em;
+    margin: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+
+  .buttons {
+    margin-top: 15px;
+  }
+
+  .buttons button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .buttons button:hover {
+    background-color: #1d4ed8;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+  }
+
+  .modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+
+  .modal-content h3 {
+    text-align: center;
+    color: #1e3a8a;
+  }
+
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .modal-content button {
+    width: 100%;
+    background-color: #2563eb;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .close {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e3a8a;
+    color: white;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ElectroHub</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Your One-Stop Electronics Store</h2>
+  <div class="buttons">
+    <button onclick="openModal('loginModal')">Login</button>
+    <button onclick="openModal('signupModal')">Sign Up</button>
+  </div>
+</section>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h3>Login</h3>
+    <input type="text" placeholder="Email or Username" required>
+    <input type="password" placeholder="Password" required>
+    <button>Login</button>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h3>Create Account</h3>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button>Sign Up</button>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 ElectroHub | All Rights Reserved
+</footer>
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+  window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+  };
+</script>
+
+</body>
+</html>
